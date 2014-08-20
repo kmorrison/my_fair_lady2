@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Candidate Gatherer{% endblock %}
+
+{% block page_title %}{{ source_name }}{% endblock page_title %}
+
+{% block content %}
+
+    {% if success_candidate_name %}
+    <div id="candidate_thanks" >THANKS {{ success_candidate_name }}</div>
+    {% endif %}
+
+    <form action="candidate_post" method="POST">
+        {% csrf_token %}
+        {{ candidate_form.as_p }}
+        <input hidden name="source_id" value={{ source_id }}>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock content %}
