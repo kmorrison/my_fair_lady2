@@ -1,7 +1,9 @@
+import csv
+
+from django import forms
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
-from django import forms
 
 from candidate_gatherer import models
 
@@ -15,8 +17,8 @@ class CandidateForm(forms.Form):
     email_address = forms.EmailField()
     email_address.widget = forms.TextInput(attrs={'placeholder': "Email"})
 
-    phone_number = forms.CharField(max_length=200)
-    phone_number.widget = forms.TextInput(attrs={'placeholder': "Phone"})
+    phone_number = forms.CharField(max_length=200, required=False)
+    phone_number.widget = forms.TextInput(attrs={'placeholder': "Phone(optional)"})
 
 
 class SourceForm(forms.Form):
@@ -110,3 +112,28 @@ def candidate_post(request):
     return redirect(
         '/candidate_gatherer/%s?success_candidate_id=%s' % (source_id, candidate.id),
     )
+
+def download(request, source_id):
+    source = models.Source.objects.get(id=source_id)
+    source_type = models.SourceType.objects.get(id=source.source_type_id)
+    candidates = models.Candidate.objects.filter(
+        source_id=source.id
+    ).order_by("time_created").all()
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="%s%s.csv"' % (source.name, source.time_created.date().isoformat())
+
+    writer = csv.DictWriter(response, ['First Name', 'Last Name', 'Email Address', 'Phone Number', 'Source Name', 'Source Type'])
+    writer.writeheader()
+    for candidate in candidates:
+        writer.writerow(
+            {
+                "First Name": candidate.first_name,
+                "Last Name": candidate.last_name,
+                "Email Address": candidate.email_address,
+                "Phone Number": candidate.phone_number,
+                "Source Name": source.name,
+                "Source Type": source_type.name,
+            }
+        )
+    return response

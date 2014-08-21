@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %}Candidate Gatherer{% endblock %}
+{% block sources_dropdown %}
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    Recent Sources
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    {% for source in recent_sources %}
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="candidate_gatherer/{{ source.id }}">{{ source.name }}</a></li>
+    {% endfor %}
+  </ul>
+</li>
+{% endblock sources_dropdown %}
 
 {% block page_title %}My Fair Lady{% endblock page_title %}
 
@@ -12,14 +25,6 @@
         {{ source_form.as_p }}
         <input id=mainformsubmit type="submit" value="Submit">
     </form>
-    </div>
-
-    <div class="recentsourcesdiv">
-    {% for source in recent_sources %}
-    <div class="previous_source_link_div">
-        <a href="candidate_gatherer/{{ source.id }}">{{ source.name }}</a>
-    </div>
-    {% endfor %}
     </div>
 
 {% endblock content %}
