@@ -1,1 +1,15 @@
 /*! project specific CSS goes here. */
+
+h1 {
+text-align: center;
+}
+
+form.main_content_form {
+text-align: center;
+}
+
+div.main_form_div {
+width: 350px:
+margin-left:auto;
+margin-right:auto;
+}
