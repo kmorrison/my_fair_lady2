@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Candidate Gatherer{% endblock %}
+
+{% block page_title %}My Fair Lady{% endblock page_title %}
+
+{% block content %}
+
+    <div class="main_form_div">
+    <form class="main_content_form" action="source_post" method="POST">
+        {% csrf_token %}
+        {{ source_form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+
+    <div class="recentsourcesdiv">
+    {% for source in recent_sources %}
+    <div class="previous_source_link_div">
+        <a href="candidate_gatherer/{{ source.id }}">{{ source.name }}</a>
+    </div>
+    {% endfor %}
+    </div>
+
+{% endblock content %}

@@ -10,7 +10,7 @@
     <div id="candidate_thanks" >THANKS {{ success_candidate_name }}</div>
     {% endif %}
 
-    <form action="candidate_post" method="POST">
+    <form class="main_content_form" action="candidate_post" method="POST">
         {% csrf_token %}
         {{ candidate_form.as_p }}
         <input hidden name="source_id" value={{ source_id }}>
