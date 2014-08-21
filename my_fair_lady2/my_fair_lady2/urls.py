@@ -10,6 +10,18 @@ admin.autodiscover()
 urlpatterns = patterns('',
     #url(r'^$', TemplateView.as_view(template_name='base.html')),
     url(
+        r'^$',
+        'candidate_gatherer.views.landing_page',
+        name='landing_page',
+    ),
+
+    url(
+        r'^source_post$',
+        'candidate_gatherer.views.source_post',
+        name='source_post',
+    ),
+
+    url(
         r'^candidate_gatherer/(?P<source_id>[0-9]+)$',
         'candidate_gatherer.views.candidate_form',
         name='candidate_form',

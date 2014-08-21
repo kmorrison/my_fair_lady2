@@ -1,18 +1,19 @@
 from django.contrib import admin
 from django.db import models
 
+
 class SourceType(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=200)
     is_active = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return self.name
+        return "%s%s" % (self.name, " (Is Active)" if self.is_active else "")
 
 
 class Source(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name="Source Name")
 
     source_type = models.ForeignKey(
         SourceType,
@@ -44,6 +45,18 @@ class Candidate(models.Model):
 
     def full_name(self):
         return "%s %s" % (self.first_name, self.last_name, )
+
+
+def recent_sources():
+    recent_sources_to_show = 5
+    active_source_type = SourceType.objects.get(
+        is_active=True,
+    )
+    return Source.objects.filter(
+        source_type_id=active_source_type.id,
+    ).order_by(
+        '-time_created',
+    ).all()[:recent_sources_to_show]
 
 
 admin.site.register(SourceType)
