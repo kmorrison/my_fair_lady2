@@ -33,6 +33,12 @@ urlpatterns = patterns('',
         name='candidate_post',
     ),
 
+    url(
+        r'^download/(?P<source_id>[0-9]+)$',
+        'candidate_gatherer.views.download',
+        name='csv_download',
+    ),
+
     # Examples:
     # url(r'^$', 'my_fair_lady2.views.home', name='home'),
     # url(r'^my_fair_lady2/', include('my_fair_lady2.foo.urls')),

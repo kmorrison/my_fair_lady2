@@ -26,3 +26,14 @@ form.main_content_form input{
 body {
 	background-color: #f7f7f7;
 }
+
+div.recentsourcesdiv {
+    text-align: center;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a.gatherer_link {
+    float: left;
+}
