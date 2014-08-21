@@ -9,8 +9,9 @@
     {% if success_candidate_name %}
     <div id="candidate_thanks" >THANKS {{ success_candidate_name }}</div>
     {% endif %}
-<div class="candidateform">
-    <form action="candidate_post" method="POST">
+
+<div class="main_form_div">
+    <form class="main_content_form" action="candidate_post" method="POST">
         {% csrf_token %}
         {{ candidate_form.as_p }}
         <input hidden name="source_id" value={{ source_id }}>

@@ -15,6 +15,52 @@ class CandidateForm(ModelForm):
             'phone_number',
         ]
 
+class SourceForm(ModelForm):
+    class Meta:
+        model = models.Source
+        fields = [
+            'name',
+        ]
+
+
+def landing_page(request):
+    return render(
+        request,
+        'landing.html',
+        dict(
+            source_form=SourceForm(),
+            recent_sources=models.recent_sources(),
+        ),
+    )
+
+def source_post(request):
+    form = SourceForm(request.POST)
+    if not form.is_valid():
+        return render(
+            request,
+            'landing.html',
+            dict(
+                source_form=form,
+                recent_source=models.recent_sources(),
+            ),
+        )
+    name = form.cleaned_data['name']
+    source_type_id = models.SourceType.objects.get(
+        is_active=True
+    ).id
+
+    #TODO: Check if something with this name and source_type already exists
+    source = models.Source(
+        name=name,
+        source_type_id=source_type_id,
+    )
+    source.save()
+
+    return redirect(
+        '/candidate_gatherer/%s' % (source.id,),
+    )
+
+
 # Create your views here.
 def candidate_form(request, source_id):
     source = models.Source.objects.get(id=source_id)
