@@ -18,12 +18,12 @@ class CandidateForm(forms.Form):
     email_address.widget = forms.TextInput(attrs={'placeholder': "Email"})
 
     phone_number = forms.CharField(max_length=200, required=False)
-    phone_number.widget = forms.TextInput(attrs={'placeholder': "Phone(optional)"})
+    phone_number.widget = forms.TextInput(attrs={'placeholder': "Phone (optional)"})
 
 
 class SourceForm(forms.Form):
     name = forms.CharField(max_length=200)
-    name.widget = forms.TextInput(attrs={'placeholder': "Name"})
+    name.widget = forms.TextInput(attrs={'placeholder': "Source Name"})
 
 
 def landing_page(request):
