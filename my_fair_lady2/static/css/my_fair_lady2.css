@@ -1,11 +1,11 @@
 /*! project specific CSS goes here. */
 
 h1 {
-text-align: center;
+    text-align: center;
 }
 
-form.main_content_form {
-text-align: center;
+div.main_content_div {
+    text-align: center;
 }
 
 div.main_form_div {
