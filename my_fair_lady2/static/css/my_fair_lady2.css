@@ -12,6 +12,7 @@ div.main_form_div {
     width: 350px;
     margin-left:auto;
     margin-right:auto;
+    margin-top: 40px;
 }
 
 form.main_content_form label {
@@ -19,10 +20,34 @@ form.main_content_form label {
 }
 
 form.main_content_form input{
+	width: 100%;
+	height: 40px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+	font-size: 20px;
+	font-weight: 200;
+	text-indent: 15px;
 }
 
 body {
 	background-color: #f7f7f7;
+}
+
+#mainformsubmit {
+	background: linear-gradient(#ea050b, #c41200);
+	font-size: 24px;
+	font-weight: 200;
+	color: white;
+	margin-top: 25px;
+}
+
+#candidate_thanks {
+	height: 40px;
+	background-color: #52ad15;
+	color: white;
+	font-size: 24px;
+	font-weight: 200;
+	border-radius: 4px;
+	margin-top: 4px;
+	border: 1px solid;
 }
