@@ -17,3 +17,12 @@ div.main_form_div {
 form.main_content_form label {
     display: none;
 }
+
+form.main_content_form input{
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+body {
+	background-color: #f7f7f7;
+}
