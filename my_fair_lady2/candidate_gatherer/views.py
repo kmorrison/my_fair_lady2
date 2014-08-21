@@ -1,26 +1,27 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
-from django.forms import ModelForm
+from django import forms
 
 from candidate_gatherer import models
 
-class CandidateForm(ModelForm):
-    class Meta:
-        model = models.Candidate
-        fields = [
-            'first_name',
-            'last_name',
-            'email_address',
-            'phone_number',
-        ]
+class CandidateForm(forms.Form):
+    first_name = forms.CharField(max_length=200)
+    first_name.widget = forms.TextInput(attrs={'placeholder': "First Name"})
 
-class SourceForm(ModelForm):
-    class Meta:
-        model = models.Source
-        fields = [
-            'name',
-        ]
+    last_name = forms.CharField(max_length=200)
+    last_name.widget = forms.TextInput(attrs={'placeholder': "Last Name"})
+
+    email_address = forms.EmailField()
+    email_address.widget = forms.TextInput(attrs={'placeholder': "Email"})
+
+    phone_number = forms.CharField(max_length=200)
+    phone_number.widget = forms.TextInput(attrs={'placeholder': "Phone"})
+
+
+class SourceForm(forms.Form):
+    name = forms.CharField(max_length=200)
+    name.widget = forms.TextInput(attrs={'placeholder': "Name"})
 
 
 def landing_page(request):

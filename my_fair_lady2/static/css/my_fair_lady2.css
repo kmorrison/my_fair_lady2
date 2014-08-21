@@ -9,7 +9,11 @@ div.main_content_div {
 }
 
 div.main_form_div {
-width: 350px;
-margin-left:auto;
-margin-right:auto;
+    width: 350px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+form.main_content_form label {
+    display: none;
 }
