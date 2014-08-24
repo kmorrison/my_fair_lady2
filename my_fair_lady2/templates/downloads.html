@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Candidate Gatherer{% endblock %}
+{% block page_title %}Downloads{% endblock page_title %}
+
+{% block content %}
+<table class="table content_table">
+    <tr>
+        <th>Time Created</th>
+        <th>Source Name</th>
+        <th>.csv</th>
+    </tr>
+    {% for source in sources %}
+    <tr>
+        <td>{{ source.time_created }}</td>
+        <td>{{ source.name }}</td>
+        <td><a href="/download/{{ source.id }}"><span class="glyphicon glyphicon-download"></span></a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
