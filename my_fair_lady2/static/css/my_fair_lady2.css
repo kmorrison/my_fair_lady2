@@ -48,7 +48,7 @@ body {
 
 /* Submit button for candidate information*/
 #mainformsubmit {
-	background: linear-gradient(#ea050b, #c41200);
+	background: #ea050b;
 	font-size: 24px;
 	font-weight: 300;
 	color: white;
