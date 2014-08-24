@@ -57,7 +57,7 @@ DATABASES = {
         'NAME': get_env_setting('RDS_DB_NAME'),
         'USER': get_env_setting('RDS_USERNAME'),
         'PASSWORD': get_env_setting('RDS_PASSWORD'),
-        'HOST': get_env_setting'(RDS_HOSTNAME'),
+        'HOST': get_env_setting('RDS_HOSTNAME'),
         'PORT': get_env_setting('RDS_PORT'),
     }
 }
