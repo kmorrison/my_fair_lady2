@@ -4,6 +4,8 @@
 /* Centering title */
 h1 {
     text-align: center;
+    font-weight: 100;
+    font-size: 50px;
 }
 
 /* Centering form fields */
@@ -48,11 +50,12 @@ body {
 
 /* Submit button for candidate information*/
 #mainformsubmit {
-	background: #ea050b;
+	background: white;
 	font-size: 24px;
 	font-weight: 300;
-	color: white;
+	color: #ea050b;;
 	margin-top: 25px;
+	border: 2px solid;
 }
 
 /* This is for the success message */
@@ -68,4 +71,17 @@ body {
 	border: 2px solid;
 	position: relative;
 	z-index: 100000;
+}
+
+div.cityscape { 
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	z-index: -1;
+
+}
+
+.cityscape img {
+   height: 100%;
+   width: 100%;
 }
