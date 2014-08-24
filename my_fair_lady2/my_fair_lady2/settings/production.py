@@ -51,7 +51,16 @@ SERVER_EMAIL = EMAIL_HOST_USER
 ########## END EMAIL CONFIGURATION
 
 ########## DATABASE CONFIGURATION
-DATABASES = {}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': get_env_setting('RDS_DB_NAME'),
+        'USER': get_env_setting('RDS_USERNAME'),
+        'PASSWORD': get_env_setting('RDS_PASSWORD'),
+        'HOST': get_env_setting'(RDS_HOSTNAME'),
+        'PORT': get_env_setting('RDS_PORT'),
+    }
+}
 ########## END DATABASE CONFIGURATION
 
 
