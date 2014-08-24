@@ -2,5 +2,5 @@
 
 
 setTimeout(function() {
-    $('#candidate_thanks').fadeOut(2500);
-}, 1000)
+    $('#candidate_thanks').fadeOut(2000);
+}, 2000)

@@ -1,9 +1,12 @@
 /*! project specific CSS goes here. */
 
+
+/* Centering title */
 h1 {
     text-align: center;
 }
 
+/* Centering form fields */
 div.main_content_div {
     text-align: center;
 }
@@ -19,35 +22,42 @@ form.main_content_form label {
     display: none;
 }
 
+/* Fields for collecting candiate info */
 form.main_content_form input{
 	width: 100%;
-	height: 40px;
+	height: 60px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	font-size: 20px;
-	font-weight: 200;
+	font-weight: 300;
 	text-indent: 15px;
 }
 
+/* Background color of page */
 body {
 	background-color: #f7f7f7;
 }
 
+/* Submit button for candidate information*/
 #mainformsubmit {
 	background: linear-gradient(#ea050b, #c41200);
 	font-size: 24px;
-	font-weight: 200;
+	font-weight: 300;
 	color: white;
 	margin-top: 25px;
 }
 
+/* This is for the success message */
 #candidate_thanks {
-	height: 40px;
-	background-color: #52ad15;
-	color: white;
+	height: 60px;
+	background-color: white;
+	line-height: 55px;
+	color: #52ad15;
 	font-size: 24px;
 	font-weight: 200;
 	border-radius: 4px;
-	margin-top: 4px;
-	border: 1px solid;
+	margin-top: -60px;
+	border: 2px solid;
+	position: relative;
+	z-index: 100000;
 }
