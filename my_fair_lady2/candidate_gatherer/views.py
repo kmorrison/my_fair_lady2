@@ -113,6 +113,16 @@ def candidate_post(request):
         '/candidate_gatherer/%s?success_candidate_id=%s' % (source_id, candidate.id),
     )
 
+def downloads(request):
+    return render(
+        request,
+        'downloads.html',
+        dict(
+            recent_sources=models.recent_sources(),
+            sources=models.Source.objects.order_by("-time_created").all(),
+        ),
+    )
+
 def download(request, source_id):
     source = models.Source.objects.get(id=source_id)
     source_type = models.SourceType.objects.get(id=source.source_type_id)
