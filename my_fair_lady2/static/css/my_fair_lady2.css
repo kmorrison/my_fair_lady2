@@ -28,6 +28,7 @@ div.main_form_div {
     margin-top: 40px;
 }
 
+
 form.main_content_form label {
     display: none;
 }
@@ -73,15 +74,63 @@ body {
 	z-index: 100000;
 }
 
-div.cityscape { 
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-	z-index: -1;
-
-}
-
 .cityscape img {
    height: 100%;
    width: 100%;
 }
+
+/* big screens */
+@media only screen 
+and (min-device-width : 1024px) {
+	div.cityscape { 
+		width: 60%;
+		position: fixed;
+		bottom: 0;
+		z-index: -1;
+		margin-left: 20%;
+		margin-right: 20%;
+
+	}
+}
+
+
+/* ipads footer size */
+@media only screen 
+and (max-device-width : 768px) 
+{
+
+	div.cityscape { 
+		width: 100%;
+		position: fixed;
+		bottom: 0;
+		z-index: -1;
+	}
+
+} 
+
+/* iphone 5/5s form size. form and header only */
+@media only screen 
+and (max-device-width : 640px) { 
+	
+	div.cityscape { 
+		visibility: hidden;
+		}
+
+	h1 {
+	    text-align: center;
+	    font-weight: 200;
+	    font-size: 25px;
+	    margin-top: -40px;
+	}
+
+	div.main_form_div {
+    width: 95%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+	}
+
+}
+
+
