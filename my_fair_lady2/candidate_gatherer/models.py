@@ -60,8 +60,3 @@ def recent_sources():
     ).order_by(
         '-time_created',
     ).all()[:recent_sources_to_show]
-
-
-admin.site.register(SourceType)
-admin.site.register(Source)
-admin.site.register(Candidate)
