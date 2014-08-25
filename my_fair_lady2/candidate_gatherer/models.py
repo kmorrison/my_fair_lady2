@@ -49,11 +49,11 @@ class Candidate(models.Model):
 
 def recent_sources():
     recent_sources_to_show = 5
-    active_source_types = SourceType.objects(
+    active_source_types = SourceType.objects.filter(
         is_active=True,
     ).all()
 
-    if not active_sources_types:
+    if not active_source_types:
         return []
     return Source.objects.filter(
         source_type_id=active_source_types[0].id,
