@@ -50,9 +50,11 @@ urlpatterns = patterns('',
     # url(r'^my_fair_lady2/', include('my_fair_lady2.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
+    # XXX: Change default resource name for security
     url(r'^the_best_admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+    # XXX: Change default resource name for security
     url(r'^the_best_admin/', include(admin.site.urls)),
 )
 
