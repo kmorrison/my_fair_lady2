@@ -49,11 +49,14 @@ class Candidate(models.Model):
 
 def recent_sources():
     recent_sources_to_show = 5
-    active_source_type = SourceType.objects.get(
+    active_source_types = SourceType.objects(
         is_active=True,
-    )
+    ).all()
+
+    if not active_sources_types:
+        return []
     return Source.objects.filter(
-        source_type_id=active_source_type.id,
+        source_type_id=active_source_types[0].id,
     ).order_by(
         '-time_created',
     ).all()[:recent_sources_to_show]
