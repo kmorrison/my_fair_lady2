@@ -54,22 +54,33 @@ body {
 	background: white;
 	font-size: 24px;
 	font-weight: 300;
-	color: #ea050b;;
+	color: #ea050b;
 	margin-top: 25px;
-	border: 2px solid;
+	border: 1px solid;
+	transition-property: background;
+	transition-duration: 0.4s;
+	transition-timing-function: linear;
 }
+
+#mainformsubmit:hover, 
+#mainformsubmit:focus {
+	background: #ea050b;
+	color: white;
+	border: 1px solid #ea050b;
+}
+
 
 /* This is for the success message */
 #candidate_thanks {
 	height: 60px;
-	background-color: white;
+	background-color: #52ad15;
 	line-height: 55px;
-	color: #52ad15;
+	color: white;
 	font-size: 24px;
 	font-weight: 200;
 	border-radius: 4px;
 	margin-top: -60px;
-	border: 2px solid;
+	border: 2px solid #52ad15;
 	position: relative;
 	z-index: 100000;
 }
