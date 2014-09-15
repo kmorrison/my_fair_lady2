@@ -140,17 +140,49 @@ def download(request, source_id):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="%s%s.csv"' % (source.name, source.time_created.date().isoformat())
 
-    writer = csv.DictWriter(response, ['First Name', 'Last Name', 'Email Address', 'Phone Number', 'Source Name', 'Source Type'])
+    field_names = [
+        'First Name', 
+        'Last Name', 
+        'Company',
+        'Job Title',
+        'Tags',
+        'Notes',
+        'Source Type',
+        'Source Name', 
+        'Email', 
+        'Email 2', 
+        'Email 3', 
+        'Home Phone', 
+        'Cell Phone', 
+        'Work Phone', 
+        'Address 1',
+        'Address 2',
+        'City',
+        'State/Province',
+        'Zip/Postal',
+        'Country',
+        'URL1',
+        'Facebook',
+        'LinkedIn',
+        'Twitter',
+        'Contact Status',
+        'Assigned To',
+        'Email Campaign',
+        'Email Status',
+    ]
+    writer = csv.DictWriter(response, field_names)
     writer.writeheader()
     for candidate in candidates:
-        writer.writerow(
+        row = dict((key, '') for key in field_names)
+        row.update(
             {
                 "First Name": candidate.first_name,
                 "Last Name": candidate.last_name,
-                "Email Address": candidate.email_address,
-                "Phone Number": candidate.phone_number,
+                "Email": candidate.email_address,
+                "Cell Phone": candidate.phone_number,
                 "Source Name": source.name,
                 "Source Type": source_type.name,
             }
         )
+        writer.writerow(row)
     return response
