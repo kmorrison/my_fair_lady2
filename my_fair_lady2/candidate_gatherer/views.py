@@ -1,6 +1,7 @@
 import csv
 
 from django import forms
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -26,6 +27,7 @@ class SourceForm(forms.Form):
     name.widget = forms.TextInput(attrs={'placeholder': "Source Name"})
 
 
+@login_required
 def landing_page(request):
     return render(
         request,
@@ -36,6 +38,7 @@ def landing_page(request):
         ),
     )
 
+@login_required
 def source_post(request):
     form = SourceForm(request.POST)
     if not form.is_valid():
@@ -65,6 +68,7 @@ def source_post(request):
 
 
 # Create your views here.
+@login_required
 def candidate_form(request, source_id):
     source = models.Source.objects.get(id=source_id)
     context = dict(
@@ -83,6 +87,7 @@ def candidate_form(request, source_id):
     )
 
 
+@login_required
 def candidate_post(request):
     form = CandidateForm(request.POST)
     source_id = request.POST['source_id']
@@ -113,6 +118,7 @@ def candidate_post(request):
         '/candidate_gatherer/%s?success_candidate_id=%s' % (source_id, candidate.id),
     )
 
+@login_required
 def downloads(request):
     return render(
         request,
@@ -123,6 +129,7 @@ def downloads(request):
         ),
     )
 
+@login_required
 def download(request, source_id):
     source = models.Source.objects.get(id=source_id)
     source_type = models.SourceType.objects.get(id=source.source_type_id)

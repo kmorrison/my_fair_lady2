@@ -56,6 +56,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # XXX: Change default resource name for security
     url(r'^the_best_admin/', include(admin.site.urls)),
+    
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'admin/login.html'}),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'admin/login.html'}),
 )
 
 # Uncomment the next line to serve media files in dev.
