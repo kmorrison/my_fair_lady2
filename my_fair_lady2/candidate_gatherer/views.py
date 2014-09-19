@@ -38,6 +38,25 @@ def landing_page(request):
         ),
     )
 
+def upsert_source(source_type_id, source_name):
+    # TODO: Move this logic out of the view.
+    existing_sources = models.Source.objects.filter(
+        source_type_id=source_type_id,
+        name=source_name,
+    ).order_by(
+        '-time_created',
+    ).all()
+    if existing_sources:
+        return existing_sources[0]
+
+    source = models.Source(
+        name=source_name,
+        source_type_id=source_type_id,
+    )
+    source.save()
+    return source.id
+
+
 @login_required
 def source_post(request):
     form = SourceForm(request.POST)
@@ -50,17 +69,13 @@ def source_post(request):
                 recent_source=models.recent_sources(),
             ),
         )
+
     name = form.cleaned_data['name']
     source_type_id = models.SourceType.objects.get(
         is_active=True
     ).id
 
-    #TODO: Check if something with this name and source_type already exists
-    source = models.Source(
-        name=name,
-        source_type_id=source_type_id,
-    )
-    source.save()
+    source = upsert_source(source_type_id, name)
 
     return redirect(
         '/candidate_gatherer/%s' % (source.id,),
@@ -87,6 +102,20 @@ def candidate_form(request, source_id):
     )
 
 
+# TODO: Move this logic out of views.
+def upsert_candidate(new_params):
+    existing_candidates = models.Candidate.objects.filter(
+        **new_params
+    ).order_by(
+        '-time_created',
+    ).all()
+    if existing_candidates:
+        return existing_candidates[0]
+    candidate = models.Candidate(**new_params)
+    candidate.save()
+    return candidate
+
+
 @login_required
 def candidate_post(request):
     form = CandidateForm(request.POST)
@@ -111,8 +140,7 @@ def candidate_post(request):
     )
     if form.cleaned_data['phone_number']:
         new_params['phone_number'] = form.cleaned_data['phone_number']
-    candidate = models.Candidate(**new_params)
-    candidate.save()
+    candidate = upsert_candidate(new_params)
 
     return redirect(
         '/candidate_gatherer/%s?success_candidate_id=%s' % (source_id, candidate.id),
