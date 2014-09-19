@@ -55,7 +55,7 @@ def upsert_source(source_type_id, source_name):
         source_type_id=source_type_id,
     )
     source.save()
-    return source.id
+    return source
 
 
 @login_required
