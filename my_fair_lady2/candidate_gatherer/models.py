@@ -53,7 +53,7 @@ class Candidate(models.Model):
 
 
 def recent_sources():
-    recent_sources_to_show = 5
+    recent_sources_to_show = 8
     active_source_types = SourceType.objects.filter(
         is_active=True,
     ).all()
