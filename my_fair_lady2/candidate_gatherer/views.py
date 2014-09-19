@@ -206,7 +206,7 @@ def download(request, source_id):
             {
                 "First Name": candidate.first_name,
                 "Last Name": candidate.last_name,
-                "Email": candidate.email_address,
+                "Email": candidate.email_address.lower(),
                 "Cell Phone": candidate.phone_number,
                 "Source Name": source.name,
                 "Source Type": source_type.name,
