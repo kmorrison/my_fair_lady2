@@ -1,4 +1,5 @@
 import csv
+from collections import namedtuple
 
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -146,6 +147,26 @@ def candidate_post(request):
         '/candidate_gatherer/%s?success_candidate_id=%s' % (source_id, candidate.id),
     )
 
+SourcePresenter = namedtuple('SourcePresenter', [
+    'id',
+    'name',
+    'time_created',
+    'candidate_count',
+])
+
+def build_source_presenters(sources):
+    # TODO: Broken record; move this logic out of views.
+    return [
+        SourcePresenter(
+            id=source.id,
+            name=source.name,
+            time_created=source.time_created,
+            candidate_count=models.Candidate.objects.filter(source_id=source.id).count(),
+        )
+        for source in sources
+    ]
+        
+
 @login_required
 def downloads(request):
     return render(
@@ -153,7 +174,9 @@ def downloads(request):
         'downloads.html',
         dict(
             recent_sources=models.recent_sources(),
-            sources=models.Source.objects.order_by("-time_created").all(),
+            sources=build_source_presenters(
+                models.Source.objects.order_by("-time_created").all()
+            ),
         ),
     )
 

@@ -9,12 +9,14 @@
         <th>Time Created</th>
         <th>Source Name</th>
         <th>.csv</th>
+        <th>Candidates</th>
     </tr>
     {% for source in sources %}
     <tr>
         <td>{{ source.time_created }}</td>
         <td>{{ source.name }}</td>
         <td><a href="/download/{{ source.id }}"><span class="glyphicon glyphicon-download"></span></a></td>
+        <td>{{ source.candidate_count }}</td>
     </tr>
     {% endfor %}
 </table>
