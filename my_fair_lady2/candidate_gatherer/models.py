@@ -22,6 +22,11 @@ class Source(models.Model):
     def __unicode__(self):
         return self.name
 
+    def number_of_candidates(self):
+        return Candidate.objects.filter(
+            source_id=self.id,
+        ).count()
+
 
 class Candidate(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
